@@ -17,8 +17,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('pelicula','PeliculaController');
+Route::post('/login', 'JwtController@authenticate');
 
-Route::apiResource('genero','GeneroController');
 
-Route::apiResource('proveedor','ProveedorController');
+//Route::group(['middleware' => ['jwt.auth']], function () {
+
+	Route::apiResource('pelicula','PeliculaController');
+
+	Route::apiResource('genero','GeneroController');
+
+	Route::apiResource('proveedor','ProveedorController');
+
+//});
+
+
+
